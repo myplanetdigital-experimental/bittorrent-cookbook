@@ -39,8 +39,9 @@ if node['bittorrent']['source']
   end
 
   #put the tarball in the build directory
-  cookbook_file "#{Chef::Config[:file_cache_path]}/aria2-#{node['bittorrent']['aria2version']}.tar.bz2" do
-    source "aria2-#{node['bittorrent']['aria2version']}.tar.bz2"
+  remote_file "#{Chef::Config[:file_cache_path]}/aria2-#{node['bittorrent']['aria2version']}.tar.bz2" do
+    source "http://sourceforge.net/projects/aria2/files/stable/aria2-#{node['bittorrent']['aria2version']}/aria2-#{node['bittorrent']['aria2version']}.tar.bz2/download"
+    action :create_if_missing
   end
 
   #build stuff
